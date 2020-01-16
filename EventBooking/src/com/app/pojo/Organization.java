@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -71,7 +72,7 @@ public class Organization {
 		this.orgPassword = orgPassword;
 	}
 
-	@Column(length=10,nullable=false)
+	//@Column(nullable=true)
 	public boolean isTrustedStatus() {
 		return trustedStatus;
 	}
@@ -80,7 +81,7 @@ public class Organization {
 		this.trustedStatus = trustedStatus;
 	}
 
-	@OneToMany(mappedBy = "org",cascade =CascadeType.ALL,orphanRemoval = true )
+	@OneToMany(mappedBy = "org",cascade =CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER )
 	public List<Event> getEvents() {
 		return events;
 	}

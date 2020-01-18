@@ -1,13 +1,10 @@
 package com.app.dao;
 
-import java.util.ArrayList;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.app.pojo.Team;
-import com.app.pojo.User;
 
 @Repository
 public class TeamImpl implements ITeamDao {

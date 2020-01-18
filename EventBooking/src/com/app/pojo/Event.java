@@ -17,6 +17,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+
+
 @Entity
 public class Event {
 private Integer eventId;//PK
@@ -124,11 +129,13 @@ public void setOrg(Organization org) {
 }
 
 @OneToMany(mappedBy = "eventTicket",  cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+@Fetch(value = FetchMode.SUBSELECT)
 public List<Ticket> getTicketsE() {
 	return ticketsE;
 }
 
 @OneToMany(mappedBy = "evntS" , cascade = CascadeType.ALL , orphanRemoval = true,fetch = FetchType.EAGER)
+@Fetch(value = FetchMode.SUBSELECT)
 public List<Matches> getMatchesE() {
 	return matchesE;
 }

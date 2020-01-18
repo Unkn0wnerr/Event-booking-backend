@@ -17,6 +17,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 public class Event {
 private Integer eventId;//PK
@@ -32,6 +36,8 @@ private Organization org;
 private List<Ticket> ticketsE= new ArrayList<Ticket>();
 
 private List<Matches> matchesE = new ArrayList<Matches>();
+
+private List<Participant> partEvent = new ArrayList<Participant>();
 
 public Event() {
 	System.out.println("Inside Event Default Constructor");
@@ -124,11 +130,13 @@ public void setOrg(Organization org) {
 }
 
 @OneToMany(mappedBy = "eventTicket",  cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+@Fetch(value=FetchMode.SUBSELECT)
 public List<Ticket> getTicketsE() {
 	return ticketsE;
 }
 
 @OneToMany(mappedBy = "evntS" , cascade = CascadeType.ALL , orphanRemoval = true,fetch = FetchType.EAGER)
+@Fetch(value=FetchMode.SUBSELECT)
 public List<Matches> getMatchesE() {
 	return matchesE;
 }
@@ -139,6 +147,16 @@ public void setMatchesE(List<Matches> matchesE) {
 
 public void setTicketsE(List<Ticket> ticketsE) {
 	this.ticketsE = ticketsE;
+}
+
+@OneToMany(mappedBy = "eventPart", cascade = CascadeType.ALL , orphanRemoval = true,fetch = FetchType.EAGER)
+
+public List<Participant> getPartEvent() {
+	return partEvent;
+}
+
+public void setPartEvent(List<Participant> partEvent) {
+	this.partEvent = partEvent;
 }
 
 @Override

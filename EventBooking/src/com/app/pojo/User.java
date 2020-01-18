@@ -146,7 +146,7 @@ public class User {
 		this.country = country;
 	}
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="team_id")
 	public Team getUserTeam() {
 		return userTeam;

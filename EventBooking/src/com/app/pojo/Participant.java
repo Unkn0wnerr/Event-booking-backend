@@ -1,6 +1,7 @@
 package com.app.pojo;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ public class Participant
 	//one-to-one
 	private Team partT;
 
+	private Event eventPart;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +29,16 @@ public class Participant
 
 	public void setpId(int pId) {
 		this.pId = pId;
+	}
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "event_id")
+	public Event getEventPart() {
+		return eventPart;
+	}
+
+	public void setEventPart(Event eventPart) {
+		this.eventPart = eventPart;
 	}
 
 	@ManyToOne

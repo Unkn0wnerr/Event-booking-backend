@@ -91,7 +91,7 @@ public void setUserTicket(User userTicket) {
 	this.userTicket = userTicket;
 }
 
-@ManyToOne
+@ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name = "event_id")
 public Event getEventTicket() {
 	return eventTicket;

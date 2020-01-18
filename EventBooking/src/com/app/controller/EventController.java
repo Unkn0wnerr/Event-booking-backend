@@ -1,11 +1,12 @@
 package com.app.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,44 +24,48 @@ public class EventController {
 		System.out.println("Inside EventController Contructor");
 		}
 	
-	@GetMapping("/all")
-	public List<Event> getAllEvent()
+	
+		
+	@GetMapping("/{game}/upcoming")
+	public List<Event> getUpcomingEvent(@PathVariable String game)
 	{
-		System.out.println("In get org details ");
+		System.out.println("In upcoming Event List ");
 		
-		return dao.getAllEvents();
-	}
-		
-	@GetMapping("/upcoming/{date}")
-	public List<Event> getUpcomingEvent(@PathVariable Date date)
-	{
-		System.out.println("In get org details ");
-		
-		return dao.upcomingEvent(date);
+		return dao.upcomingEvent(game);
 	}
 	
-	@GetMapping("/past/{date}")
-	public List<Event> getPastEvent(@PathVariable Date date)
+	@GetMapping("/{game}/past")
+	public List<Event> getPastEvent(@PathVariable String game)
 	{
-		System.out.println("In get org details ");
+		System.out.println("In past Event List");
 		
-		return dao.pastEvent(date);
+		return dao.pastEvent(game);
 	}
 	
-	@GetMapping("/ongoing/{date}")
-	public List<Event> getCurrentEvent(@PathVariable Date date)
+	@GetMapping("/{game}/ongoing")
+	public List<Event> getCurrentEvent(@PathVariable String game)
 	{
-		System.out.println("In get org details ");
+		System.out.println("In ongoing event list");
 		
-		return dao.currentEvent(date);
+		return dao.currentEvent(game);
 	}
 	
 	@GetMapping("/{game}")
 	public List<Event> eventbyGameName(@PathVariable String game)
 	{
-		System.out.println("In get org details ");
+		System.out.println("In game event list");
 		
 		return dao.getEventDtlsbyGame(game);
 	}
+	
+	@PostMapping("/register")
+	public Event registerEvent(@RequestBody Event e){
+		
+		System.out.println("In event register");
+		return dao.eventRegister(e);
+		
+	}
+	
+	
 
 }

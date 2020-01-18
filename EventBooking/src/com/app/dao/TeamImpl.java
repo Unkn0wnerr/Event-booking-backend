@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.pojo.Team;
 
-
 @Repository
 @Transactional
 public class TeamImpl implements ITeamDao {

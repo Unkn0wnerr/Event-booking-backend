@@ -123,12 +123,12 @@ public void setOrg(Organization org) {
 	this.org = org;
 }
 
-@OneToMany(mappedBy = "eventTicket",  cascade = CascadeType.ALL,orphanRemoval = true)
+@OneToMany(mappedBy = "eventTicket",  cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
 public List<Ticket> getTicketsE() {
 	return ticketsE;
 }
 
-@OneToMany(mappedBy = "evntS" , cascade = CascadeType.ALL , orphanRemoval = true)
+@OneToMany(mappedBy = "evntS" , cascade = CascadeType.ALL , orphanRemoval = true,fetch = FetchType.EAGER)
 public List<Matches> getMatchesE() {
 	return matchesE;
 }

@@ -1,6 +1,8 @@
 package com.app.dao;
 
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -37,6 +39,13 @@ public class UserImpl implements IUserDao {
 		// TODO Auto-generated method stub
 		String jpql="select u from User u where u.userEmail=:em and u.password=:pwd";
 		return sf.getCurrentSession().createQuery(jpql, User.class).setParameter("em", email).setParameter("pwd",password).getSingleResult();
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		// TODO Auto-generated method stub
+		String jpql="select u from User u";
+		return sf.getCurrentSession().createQuery(jpql, User.class).getResultList();
 	}
 	
 	

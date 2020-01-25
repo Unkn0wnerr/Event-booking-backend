@@ -16,6 +16,7 @@ import com.app.pojo.Event;
 @CrossOrigin
 @RestController
 @RequestMapping("/event")
+@CrossOrigin
 public class EventController {
 	
 	@Autowired

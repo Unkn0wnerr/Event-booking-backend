@@ -3,7 +3,6 @@ package com.app.pojo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class User {
@@ -38,22 +39,9 @@ public class User {
 		System.out.println("Inside User Default Contructor");
 	}
 
-	public User(String name, String nickName, String userEmail, String password, int age, Date birthDate, String gender,
-			String role, String country) {
-		super();
-		this.name = name;
-		this.nickName = nickName;
-		this.userEmail = userEmail;
-		this.password = password;
-		this.age = age;
-		this.birthDate = birthDate;
-		this.gender = gender;
-		this.role = role;
-		this.country = country;
-		System.out.println("Inside User Para Contructor");
-		
-		
-	}
+ 
+
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -110,6 +98,7 @@ public class User {
 		this.age = age;
 	}
 
+	@JsonFormat(pattern ="yyyy-MM-dd" )
 	@Temporal(TemporalType.DATE)
 	public Date getBirthDate() {
 		return birthDate;

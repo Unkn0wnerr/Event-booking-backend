@@ -1,11 +1,15 @@
 package com.app.dao;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.app.pojo.Organization;
+
+
+
 @Repository
 @Transactional
 public class OrganizerImpl implements IOrganizerDao {
@@ -38,6 +42,12 @@ public class OrganizerImpl implements IOrganizerDao {
 		// TODO Auto-generated method stub
 		String jpql="select o from Organization o where o.orgEmail=:em and o.orgPassword=:pwd";
 		return sf.getCurrentSession().createQuery(jpql, Organization.class).setParameter("em", email).setParameter("pwd",password).getSingleResult();
+	}
+
+	@Override
+	public List<Organization> getAllOrg() {
+		String jpql="select o from Organization o ";
+		return sf.getCurrentSession().createQuery(jpql,Organization.class).getResultList();
 	}
 
 }

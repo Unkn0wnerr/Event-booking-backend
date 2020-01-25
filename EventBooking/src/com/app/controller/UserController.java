@@ -1,6 +1,11 @@
 package com.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +19,7 @@ import com.app.pojo.User;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
 
 	@Autowired
@@ -37,11 +43,21 @@ public class UserController {
 		System.out.println("In register User ");
 		return dao.registerUser(u);
 	}
+	
 	@PostMapping("/validate")
-	public User validateUser(@RequestParam String email,@RequestParam String password)
+	public ResponseEntity<?> validateUser(@RequestBody User u)
 	{
 		System.out.println("In register User ");
-		return dao.authenticateUser(email, password);
+		System.out.println(u);
+		User y= dao.authenticateUser(u.getUserEmail(), u.getPassword());
+		System.out.println(y);
+	    return new ResponseEntity<User>(y, HttpStatus.OK);
+		
 	}
 	
+	@GetMapping("/list")
+	public List<User> getAllList()
+	{
+		return dao.getAllUser();
+	}
 }

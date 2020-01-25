@@ -1,6 +1,11 @@
 package com.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dao.IOrganizerDao;
 import com.app.pojo.Organization;
+import com.app.pojo.User;
 
 @RestController
 @RequestMapping("/org")
+@CrossOrigin("*")
 public class OrganizationController {
 
 	
@@ -35,15 +42,22 @@ public class OrganizationController {
 		@PostMapping("/register")
 		public Organization registerOrg(@RequestBody Organization o)
 		{
+			System.out.println(o);
 			System.out.println("In register org ");
 			return dao.registerOrg(o);
 		}
 		@PostMapping("/validate")
-		public Organization validateOrg(@RequestParam String email,@RequestParam String password)
+		public ResponseEntity<?> validateOrg(@RequestBody Organization o)
 		{
 			System.out.println("In register org ");
-			return dao.authenticateOrg(email, password);
+			Organization a= dao.authenticateOrg(o.getOrgEmail(), o.getOrgPassword());
+			 return new ResponseEntity<Organization>(a, HttpStatus.OK);
 		}
 	
+		@GetMapping("/list")
+		public List<Organization> getAllOrg()
+		{
+			return dao.getAllOrg();
+		}
 	
 }

@@ -11,7 +11,7 @@
 	<!-- to enable annotation based MVC support -->
 	<mvc:annotation-driven/>
 	
-	<!-- import hibernate config xml file -->
+	<!-- import hibernate_config_xml file -->
 	<import resource="classpath:/hibernate-persistence.xml"/>
 	
 </beans>

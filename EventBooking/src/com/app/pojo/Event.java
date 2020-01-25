@@ -21,6 +21,8 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Event {
 private Integer eventId;//PK
@@ -73,6 +75,7 @@ public void setEventName(String eventName) {
 	this.eventName = eventName;
 }
 
+@JsonFormat(pattern = "yyyy-MM-dd")
 @Temporal(TemporalType.DATE)
 public Date getStartDate() {
 	return startDate;
@@ -82,6 +85,7 @@ public void setStartDate(Date startDate) {
 	this.startDate = startDate;
 }
 
+@JsonFormat(pattern = "yyyy-MM-dd")
 @Temporal(TemporalType.DATE)
 public Date getEndDate() {
 	return endDate;

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dao.IEventDao;
 import com.app.pojo.Event;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/event")
 @CrossOrigin("*")
@@ -66,6 +66,13 @@ public class EventController {
 		System.out.println("In event register");
 		return dao.eventRegister(e);
 		
+	}
+	
+	@GetMapping("/eventpage/{id}")
+	public Event getEventById(@PathVariable int id)
+	{
+		System.out.println("In getEvent By id method");
+		return dao.getEventbyId(id);
 	}
 	
 	

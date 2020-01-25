@@ -11,4 +11,5 @@ public interface IEventDao {
 	List<Event> pastEvent(String game);
 	List<Event> getEventDtlsbyGame(String game);
 	Event eventRegister(Event e);
+	Event getEventbyId(int id);
 }

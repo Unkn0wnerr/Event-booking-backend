@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.pojo.Event;
+
 @Repository
 @Transactional
 public class EventImpl implements IEventDao {
@@ -56,6 +57,13 @@ public class EventImpl implements IEventDao {
 		sf.getCurrentSession().persist(e);
 		System.out.println("Event registration successfull");
 		return e;
+	}
+
+
+	@Override
+	public Event getEventbyId(int id) {
+		// TODO Auto-generated method stub
+		return sf.getCurrentSession().get(Event.class,id);
 	}
 
 	

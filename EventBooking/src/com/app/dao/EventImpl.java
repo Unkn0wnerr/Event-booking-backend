@@ -13,13 +13,9 @@ import com.app.pojo.Event;
 @Transactional
 public class EventImpl implements IEventDao {
 
-	
 	@Autowired
 	private SessionFactory sf;
 	
-	
-
-
 
 	@Override
 	public List<Event> upcomingEvent(String game) {

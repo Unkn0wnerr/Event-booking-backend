@@ -16,11 +16,11 @@ import com.app.pojo.Event;
 @CrossOrigin
 @RestController
 @RequestMapping("/event")
-@CrossOrigin("*")
+
 public class EventController {
 	
 	@Autowired
-	IEventDao dao;
+	private IEventDao dao;
 	
 	public EventController() {
 		System.out.println("Inside EventController Contructor");

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dao.IUserDao;
+import com.app.pojo.Event;
 import com.app.pojo.User;
 
 @RestController
@@ -28,6 +29,9 @@ public class UserController {
 	public UserController() {
 	System.out.println("Inside UserController Contructor");
 	}
+	
+	
+	
 	
 	@GetMapping("/{user_id}")
 	public User getUserDetail(@PathVariable int user_id)
@@ -44,6 +48,7 @@ public class UserController {
 		return dao.registerUser(u);
 	}
 	
+	
 	@PostMapping("/validate")
 	public ResponseEntity<?> validateUser(@RequestBody User u)
 	{
@@ -53,6 +58,14 @@ public class UserController {
 		System.out.println(y);
 	    return new ResponseEntity<User>(y, HttpStatus.OK);
 		
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String deleteUserById(@PathVariable int id)
+	{
+		System.out.println("In delete user By id");
+		String ds= dao.deleteUser(id);
+		 return ds;
 	}
 	
 	@GetMapping("/list")

@@ -3,6 +3,7 @@ package com.app.dao;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -46,6 +47,18 @@ public class UserImpl implements IUserDao {
 		// TODO Auto-generated method stub
 		String jpql="select u from User u";
 		return sf.getCurrentSession().createQuery(jpql, User.class).getResultList();
+	}
+
+	@Override
+	public String deleteUser(int userId) {
+		Session hs=sf.getCurrentSession();
+		User u =hs.get(User.class, userId);
+		if(u!=null)
+		{
+			hs.delete(u);
+		}
+		
+		return "Delete User";
 	}
 	
 	

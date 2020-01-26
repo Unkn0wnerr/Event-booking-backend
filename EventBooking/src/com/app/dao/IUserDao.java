@@ -10,6 +10,7 @@ public interface IUserDao {
 	User registerUser(User u);
 	User authenticateUser(String email,String password);
 	List<User> getAllUser();
+	String deleteUser(int userId);
 	
 	
 }

@@ -30,6 +30,7 @@ public class UserImpl implements IUserDao {
 
 	@Override
 	public User registerUser(User u) {
+		u.setRole("abc");
 		sf.getCurrentSession().persist(u);
 		System.out.println("registration successfull");
 		return u;
@@ -59,6 +60,13 @@ public class UserImpl implements IUserDao {
 		}
 		
 		return "Delete User";
+	}
+
+	@Override
+	public String updateTeamId(User u) {
+		System.out.println("in team update");
+       sf.getCurrentSession().update(u);
+		return "update";
 	}
 	
 	

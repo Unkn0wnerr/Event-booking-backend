@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dao.ITeamDao;
 import com.app.dao.IUserDao;
-import com.app.pojo.Event;
+
+import com.app.pojo.Team;
 import com.app.pojo.User;
+
 
 @RestController
 @RequestMapping("/user")
@@ -25,6 +27,8 @@ public class UserController {
 
 	@Autowired
 	private IUserDao dao;
+	@Autowired
+	private ITeamDao tdao;
 	
 	public UserController() {
 	System.out.println("Inside UserController Contructor");
@@ -67,6 +71,19 @@ public class UserController {
 		String ds= dao.deleteUser(id);
 		 return ds;
 	}
+	
+	@GetMapping("/updateTeam/{userId}/{teamId}")
+	public String updateUser(@PathVariable Integer userId,@PathVariable Integer teamId)
+	{
+		User u = dao.getUserDetails(userId);
+		Team t = tdao.getDetailsTeam(teamId);
+		System.out.println(userId +"-----"+teamId);
+		u.setUserTeam(t);
+		dao.updateTeamId(u);
+		return "update";
+		
+	}
+	
 	
 	@GetMapping("/list")
 	public List<User> getAllList()

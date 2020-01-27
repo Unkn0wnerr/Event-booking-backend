@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Team {
 private Integer teamId;//PK
@@ -77,6 +79,7 @@ public void setTrustedStatus(boolean trustedStatus) {
 	this.trustedStatus = trustedStatus;
 }
 
+@JsonIgnore
 @OneToMany(mappedBy="userTeam", cascade = CascadeType.ALL,orphanRemoval =true,fetch = FetchType.EAGER)
 public List<User> getUser() {
 	return user;

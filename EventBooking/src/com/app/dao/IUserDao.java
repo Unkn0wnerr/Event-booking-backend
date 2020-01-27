@@ -11,6 +11,6 @@ public interface IUserDao {
 	User authenticateUser(String email,String password);
 	List<User> getAllUser();
 	String deleteUser(int userId);
-	
+    String updateTeamId(User u);
 	
 }

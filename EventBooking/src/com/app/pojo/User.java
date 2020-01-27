@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -135,6 +136,7 @@ public class User {
 		this.country = country;
 	}
 
+	
 	@ManyToOne(fetch = FetchType.EAGER,cascade={ CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name="team_id")
 	public Team getUserTeam() {
